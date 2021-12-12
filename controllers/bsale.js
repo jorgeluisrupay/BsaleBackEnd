@@ -56,7 +56,9 @@ const productoGetPorId = (req, res = response) => {
 
 const productoBuscadorName = (req, res = response) => {
     const {name} = req.params;
-  conexion.query(`SELECT * FROM product WHERE name LIKE '%${name}%'`, (error, results) => {
+    const nameLike = `%${name}%`
+    const query = `SELECT * FROM product WHERE name LIKE ${conexion.escape(nameLike)}`;
+  conexion.query(query, (error, results) => {
     if (error) {
       throw error;
     } else {

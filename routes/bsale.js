@@ -15,7 +15,14 @@ router.get('/productos', productosGet)
 
 router.get('/productos/:id', productoGetPorId)
 
-router.get('/productos/buscador/:name', productoBuscadorName )
+router.get('/buscador/:name', productoBuscadorName )
+
+router.get('/**', (req, res) => {
+        res.json({
+                msg: "Ruta no encontrada en el servidor",
+                status: 404,
+            });
+})
 
 
 
